@@ -11,8 +11,8 @@
 var Boxlayout = (function() {
 
     var $el = $('#bl-main'),
-        $sections = $el.children('section:not(.topleft)'),
-        // $sections = $el.children(),
+        // $sections = $el.children('section:not(.topleft)'),
+        $sections = $el.children(),
         // works section
         $sectionWork = $('#bl-work-section'),
         // work items

@@ -16,4 +16,50 @@
             </div>
         </div>
     </div>
+    <div class="bl-content">
+        <!-- Main Heading Starts -->
+        <div class="container page-title center-align">
+            <h2 class="center-align">
+                <span data-hover="Administrator">Administrator </span>
+            </h2>
+        </div>
+        <!-- Main Heading Ends -->
+        <div class="container infos">
+            <!-- Divider Starts -->
+            <div class="divider center-align">
+                <span class="outer-line"></span>
+                <span class="fa fa-vcard" aria-hidden="true"></span>
+                <span class="outer-line"></span>
+            </div>
+            <!-- Divider Ends -->
+            <!-- Personal Informations Starts -->
+            <div class="row">
+                <center>
+                    <div class="col s12 m6 offset-m3 personal-info">
+                        <form action="/login" method="POST">
+                            <div class="input-field second-font">
+                                <i class="fa fa-envelope prefix"></i>
+                                <input style="color:#fff" id="email" type="email" name="email" class="validate" required>
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="input-field second-font">
+                                <i class="fa fa-lock prefix"></i>
+                                <input style="color:#fff" id="password" type="password" name="password"  required>
+                                <label for="password">Password</label>
+                            </div>
+                            <a href="/register" class="col s12 m12 l4 xl4 btn btn-blog font-weight-500 left">
+                                Register <i class="fa fa-edit"></i>
+                            </a>
+                            <button class="btn font-weight-500 right" type="submit" name="send">
+                                Login <i class="fa fa-send"></i>
+                            </button>
+                        </form>
+                    </div>
+                </center>
+            </div>
+            <!-- Personal Informations Ends -->
+        </div>
+    </div>
+    <!-- End Expanded About -->
+    <img alt="close" src="/front/images/close-button.png" class="bl-icon-close" />
 </section>
