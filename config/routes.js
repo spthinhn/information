@@ -23,8 +23,24 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
-  '/login': {
+  'GET /': { 
+    action: 'view-homepage-or-redirect' 
+  },
+  'GET /register': { 
+    view: 'pages/register',
+    locals: {
+      layout: 'layouts/blank'
+    }
+  },
+  'POST /register': { 
+    controller: 'AuthController',
+    action: 'register',
+  },
+  'POST /login': { 
+    controller: 'AuthController',
+    action: 'login',
+  },
+  'GET /welcome': {
     view: 'pages/homepage',
     locals: {
       layout: 'layouts/blank'
