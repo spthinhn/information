@@ -6,24 +6,77 @@
  */
 
 module.exports = {
-	login: function (req, res) {
-		var db = sails.getDatastore().manager;
 
+
+	login: async function (req, res) {
 		var email = req.param('email');
 		var password = req.param('password');
-		var user = User.count();
-		console.log(user);
-		
-		res.redirect('/welcome');
-	},
-	register: function (req, res) {
-		var db = sails.getDatastore().manager;
 
+		User.findOne({email: email})
+		.exec(function(err, user) {
+			if (err) return res.end('404', 'error');
+			
+			if (user) {
+				if (password == user.password) {
+					return res.redirect('/');
+				} else {
+					return res.end('404', 'error');
+				}
+				
+			} 
+		});
+	},
+
+	register: async function (req, res) {
 		var email = req.param('email');
 		var password = req.param('password');
 		var password_confirm = req.param('password_confirm');
-		db.collection('users').insertOne({email,password});
-		res.redirect('/');	
+
+		User.findOrCreate({email: email}, {email: email, password: password})
+		.exec(function(err, user, wasCreated) {
+			if (err) {
+				var json = {
+					'status': 400,
+					'error': 'field empty'
+				};
+				return res.view('/pages/register', json);
+			}
+			// if (err) return res.serverError(err);
+		});
+
+		return res.redirect('/');
+		// var user = await User.find({email: email});
+		// console.log(user);
+		// if (user) {
+		// 	res.status(406).send('User exist');
+		// } else {
+			
+		// }
 	}
+		
+	
+
+	// 	Users.create({email, password}).exec((err, user)=>{
+	// 	  if (err) {
+	// 	    return res.serverError(err);
+	// 	  }
+
+	// 	  // would you look at all those zookeepers?
+	// 	  console.log(user);
+	// 	  return res.json(user);
+	// 	});
+		
+	// },
+	// register: function (req, res) {
+		
+	// 	// var db = sails.getDatastore().manager;
+
+	// 	// var email = req.param('email');
+	// 	// var password = req.param('password');
+	// 	// var password_confirm = req.param('password_confirm');
+	// 	// db.collection('users').insertOne({email,password});
+
+	// 	res.redirect('/');	
+	// }
 };
 
